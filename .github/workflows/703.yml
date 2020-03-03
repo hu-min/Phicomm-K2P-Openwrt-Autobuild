@@ -92,6 +92,19 @@ jobs:
           name: OpenWrt_bin
           path: openwrt/bin
 
+      - name: Upload .config file 组织要上传.config配置文件
+        run: |
+          mkdir -p openwrt/artifact
+          cp openwrt/.config openwrt/artifact/file.config
+           
+      - name: Upload .config file 上传编译配置文件
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: config file
+          path: openwrt/artifact
+
+
       - name: Remove packages
         if: always()
         run: |
